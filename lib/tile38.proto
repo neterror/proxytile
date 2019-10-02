@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+enum Detection {
+  enter = 0;
+  leave = 1;
+  inside = 2;
+  outside = 4;
+  cross = 8;
+  all = 31;
+}
+
+enum Command {
+  nearby = 0;
+  within = 1;
+  intersects = 2;
+}
+
+message CreateFence {
+  string group = 1;
+  Detection detection = 2;
+  Command command = 3;
+  string area = 4;
+}
+
+message GenericCommand { string command = 1; }
+
+message GenericResponse { string response = 1; }
+
+message GeofenceEvent {
+  Detection detection = 1;
+  string object = 2;
+  string group = 3;
+  string time = 4;
+  string area = 5;
+}
+
+message Packet {
+  oneof data {
+    CreateFence createFence = 1;
+    GenericCommand genericCmd = 2;
+    GenericResponse genericResponse = 3;
+  }
+}

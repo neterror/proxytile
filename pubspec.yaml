@@ -1,0 +1,18 @@
+name: proxytile
+description: Proxy to redis for web applications
+version: 0.0.1
+author: Plamen Todorov <androplam@gmail.com>
+
+environment:
+  sdk: '>=2.5.0 <3.0.0'
+
+dependencies:
+  redis: ^1.2.1
+  shelf_web_socket: any
+  args: ^1.5.2
+  protobuf: ^0.13.16+1
+  mqtt_client: ^5.5.4
+
+dev_dependencies:
+  pedantic: ^1.8.0
+  test: ^1.6.0
