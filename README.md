@@ -1,4 +1,1 @@
-A sample command-line application.
-
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+Proxy between browsers and Tile38. Communicates through websocket with the browsers, redis protocol with tile38. 
