@@ -53,10 +53,10 @@ const GenericResponse$json = const {
 const GeofenceEvent$json = const {
   '1': 'GeofenceEvent',
   '2': const [
-    const {'1': 'detection', '3': 1, '4': 1, '5': 14, '6': '.Detection', '10': 'detection'},
-    const {'1': 'object', '3': 2, '4': 1, '5': 9, '10': 'object'},
+    const {'1': 'detect', '3': 1, '4': 1, '5': 14, '6': '.Detection', '10': 'detect'},
+    const {'1': 'hook', '3': 2, '4': 1, '5': 9, '10': 'hook'},
     const {'1': 'group', '3': 3, '4': 1, '5': 9, '10': 'group'},
-    const {'1': 'time', '3': 4, '4': 1, '5': 9, '10': 'time'},
+    const {'1': 'vehicle', '3': 4, '4': 1, '5': 9, '10': 'vehicle'},
     const {'1': 'area', '3': 5, '4': 1, '5': 9, '10': 'area'},
   ],
 };
@@ -67,6 +67,7 @@ const Packet$json = const {
     const {'1': 'createFence', '3': 1, '4': 1, '5': 11, '6': '.CreateFence', '9': 0, '10': 'createFence'},
     const {'1': 'genericCmd', '3': 2, '4': 1, '5': 11, '6': '.GenericCommand', '9': 0, '10': 'genericCmd'},
     const {'1': 'genericResponse', '3': 3, '4': 1, '5': 11, '6': '.GenericResponse', '9': 0, '10': 'genericResponse'},
+    const {'1': 'geofenceEvent', '3': 4, '4': 1, '5': 11, '6': '.GeofenceEvent', '9': 0, '10': 'geofenceEvent'},
   ],
   '8': const [
     const {'1': 'data'},

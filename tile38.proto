@@ -23,14 +23,13 @@ message CreateFence {
 }
 
 message GenericCommand { string command = 1; }
-
 message GenericResponse { string response = 1; }
 
 message GeofenceEvent {
-  Detection detection = 1;
-  string object = 2;
+  Detection detect = 1;
+  string hook = 2;
   string group = 3;
-  string time = 4;
+  string vehicle = 4;
   string area = 5;
 }
 
@@ -39,5 +38,6 @@ message Packet {
     CreateFence createFence = 1;
     GenericCommand genericCmd = 2;
     GenericResponse genericResponse = 3;
+    GeofenceEvent geofenceEvent = 4;
   }
 }

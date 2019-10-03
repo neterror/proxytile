@@ -111,10 +111,10 @@ class GenericResponse extends $pb.GeneratedMessage {
 
 class GeofenceEvent extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('GeofenceEvent')
-    ..e<Detection>(1, 'detection', $pb.PbFieldType.OE, Detection.enter, Detection.valueOf, Detection.values)
-    ..aOS(2, 'object')
+    ..e<Detection>(1, 'detect', $pb.PbFieldType.OE, Detection.enter, Detection.valueOf, Detection.values)
+    ..aOS(2, 'hook')
     ..aOS(3, 'group')
-    ..aOS(4, 'time')
+    ..aOS(4, 'vehicle')
     ..aOS(5, 'area')
     ..hasRequiredFields = false
   ;
@@ -133,25 +133,25 @@ class GeofenceEvent extends $pb.GeneratedMessage {
   static GeofenceEvent getDefault() => _defaultInstance ??= create()..freeze();
   static GeofenceEvent _defaultInstance;
 
-  Detection get detection => $_getN(0);
-  set detection(Detection v) { setField(1, v); }
-  $core.bool hasDetection() => $_has(0);
-  void clearDetection() => clearField(1);
+  Detection get detect => $_getN(0);
+  set detect(Detection v) { setField(1, v); }
+  $core.bool hasDetect() => $_has(0);
+  void clearDetect() => clearField(1);
 
-  $core.String get object => $_getS(1, '');
-  set object($core.String v) { $_setString(1, v); }
-  $core.bool hasObject() => $_has(1);
-  void clearObject() => clearField(2);
+  $core.String get hook => $_getS(1, '');
+  set hook($core.String v) { $_setString(1, v); }
+  $core.bool hasHook() => $_has(1);
+  void clearHook() => clearField(2);
 
   $core.String get group => $_getS(2, '');
   set group($core.String v) { $_setString(2, v); }
   $core.bool hasGroup() => $_has(2);
   void clearGroup() => clearField(3);
 
-  $core.String get time => $_getS(3, '');
-  set time($core.String v) { $_setString(3, v); }
-  $core.bool hasTime() => $_has(3);
-  void clearTime() => clearField(4);
+  $core.String get vehicle => $_getS(3, '');
+  set vehicle($core.String v) { $_setString(3, v); }
+  $core.bool hasVehicle() => $_has(3);
+  void clearVehicle() => clearField(4);
 
   $core.String get area => $_getS(4, '');
   set area($core.String v) { $_setString(4, v); }
@@ -163,6 +163,7 @@ enum Packet_Data {
   createFence, 
   genericCmd, 
   genericResponse, 
+  geofenceEvent, 
   notSet
 }
 
@@ -171,13 +172,15 @@ class Packet extends $pb.GeneratedMessage {
     1 : Packet_Data.createFence,
     2 : Packet_Data.genericCmd,
     3 : Packet_Data.genericResponse,
+    4 : Packet_Data.geofenceEvent,
     0 : Packet_Data.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('Packet')
-    ..oo(0, [1, 2, 3])
+    ..oo(0, [1, 2, 3, 4])
     ..a<CreateFence>(1, 'createFence', $pb.PbFieldType.OM, CreateFence.getDefault, CreateFence.create)
     ..a<GenericCommand>(2, 'genericCmd', $pb.PbFieldType.OM, GenericCommand.getDefault, GenericCommand.create)
     ..a<GenericResponse>(3, 'genericResponse', $pb.PbFieldType.OM, GenericResponse.getDefault, GenericResponse.create)
+    ..a<GeofenceEvent>(4, 'geofenceEvent', $pb.PbFieldType.OM, GeofenceEvent.getDefault, GeofenceEvent.create)
     ..hasRequiredFields = false
   ;
 
@@ -212,5 +215,10 @@ class Packet extends $pb.GeneratedMessage {
   set genericResponse(GenericResponse v) { setField(3, v); }
   $core.bool hasGenericResponse() => $_has(2);
   void clearGenericResponse() => clearField(3);
+
+  GeofenceEvent get geofenceEvent => $_getN(3);
+  set geofenceEvent(GeofenceEvent v) { setField(4, v); }
+  $core.bool hasGeofenceEvent() => $_has(3);
+  void clearGeofenceEvent() => clearField(4);
 }
 
