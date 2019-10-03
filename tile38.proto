@@ -25,13 +25,42 @@ message CreateFence {
 message GenericCommand { string command = 1; }
 message GenericResponse { string response = 1; }
 
+message Point {
+  LatLng center = 1;
+  double radius = 2;
+}
+
+message GeoJson { string json = 1; }
+
+message Area {
+  oneof data {
+    Point point = 1;
+    GeoJson json = 2;
+  }
+}
+
 message GeofenceEvent {
   Detection detect = 1;
-  string hook = 2;
+  string hookName = 2;
   string group = 3;
   string vehicle = 4;
-  string area = 5;
+  LatLng position = 5;
 }
+
+message Hook {
+  string hookName = 1;
+  string group = 2;
+  Command command = 3;
+  Area area = 4;
+}
+
+message LatLng {
+  double lat = 1;
+  double lng = 2;
+}
+
+message GetHooks { string pattern = 1; }
+message HookList { repeated Hook items = 2; }
 
 message Packet {
   oneof data {
@@ -39,5 +68,7 @@ message Packet {
     GenericCommand genericCmd = 2;
     GenericResponse genericResponse = 3;
     GeofenceEvent geofenceEvent = 4;
+    GetHooks getHooks = 5;
+    HookList hooks = 6;
   }
 }
