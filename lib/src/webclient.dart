@@ -23,21 +23,13 @@ class WebClient {
     ///TODO - we need notification when the connection is terminated
   }
 
-  final _detections = <String, Detection>{
-    "enter": Detection.enter,
-    "leave": Detection.leave,
-    "inside": Detection.inside,
-    "outside": Detection.outside,
-    "cross": Detection.cross,
-  };
-
   void _fromMqtt(MqttMsg msg) {
     List<int> chars = msg.data.toList();
     var text = String.fromCharCodes(chars);
 
     var json = jsonDecode(text);
     var event = GeofenceEvent();
-    event.detect = _detections[json['detect']];
+    event.detect = Detection.values.firstWhere((x) => x.name == json['detect']);
     event.group = json["key"];
     event.vehicle = json["id"];
     var pos = LatLng();

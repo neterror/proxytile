@@ -9,7 +9,7 @@ class Tile38Commands {
   final _commands = <Packet_Data, Function>{};
 
   Tile38Commands(this._tile38Service, this._mqttService) {
-    _commands[Packet_Data.createFence] = _createFence;
+    _commands[Packet_Data.createHook] = _createHook;
     _commands[Packet_Data.genericCmd] = _genericCmd;
     _commands[Packet_Data.getHooks] = _getHooks;
   }
@@ -28,12 +28,22 @@ class Tile38Commands {
     return await _tile38Service.send(tokens);
   }
 
-  _createFence(Packet request) async {
-    var req = request.createFence;
-    var topic = "${MqttService.rootTopic}${req.group}";
+  String _areaStr(Area area) {
+    if (area.whichData() == Area_Data.point) {
+      return "POINT ${area.point.center.lat} ${area.point.center.lng} ${area.point.radius}";
+    } else {
+      return "OBJECT ${area.json.value}";
+    }
+  }
+
+  _createHook(Packet packet) async {
+    var hook = packet.createHook.hook;
+    var topic = "${MqttService.rootTopic}${hook.group}";
+    var now =  DateTime.now().millisecondsSinceEpoch;
+    var hookName = "${hook.group}_$now";
     var mqttHook =
-        "SETHOOK hook_of_${req.group} mqtt://${_mqttService.server}:${_mqttService.port}/$topic/qos=1/retained=0";
-    var fence = "${req.command} ${req.group} FENCE ${req.area}";
+        "SETHOOK $hookName mqtt://${_mqttService.server}:${_mqttService.port}/$topic/qos=1/retained=0";
+    var fence = "${hook.command} ${hook.group} FENCE ${_areaStr(hook.area)}";
     var cmd = "$mqttHook $fence";
     var response = await _execute("$cmd");
     print(response);
@@ -58,7 +68,7 @@ class Tile38Commands {
     for (var item in response) {
       var hook = Hook();
       //[0] name, [1] group,[2] command, [3] fenceObject
-      hook.hookName = item[0];
+      hook.name = item[0];
       hook.group = item[1];
 
       hook.command = Command.values

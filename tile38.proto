@@ -15,15 +15,9 @@ enum Command {
   intersects = 2;
 }
 
-message CreateFence {
-  string group = 1;
-  Detection detection = 2;
-  Command command = 3;
-  string area = 4;
-}
-
 message GenericCommand { string command = 1; }
 message GenericResponse { string response = 1; }
+
 
 message Point {
   LatLng center = 1;
@@ -48,10 +42,11 @@ message GeofenceEvent {
 }
 
 message Hook {
-  string hookName = 1;
+  string name = 1;
   string group = 2;
   Command command = 3;
-  Area area = 4;
+  Detection detection = 4;
+  Area area = 5;
 }
 
 message LatLng {
@@ -59,16 +54,23 @@ message LatLng {
   double lng = 2;
 }
 
+message CreateHook {
+  Hook hook = 1;
+}
+
+
 message GetHooks { string pattern = 1; }
 message HookList { repeated Hook items = 2; }
 
 message Packet {
   oneof data {
-    CreateFence createFence = 1;
-    GenericCommand genericCmd = 2;
-    GenericResponse genericResponse = 3;
-    GeofenceEvent geofenceEvent = 4;
-    GetHooks getHooks = 5;
-    HookList hooks = 6;
+    GenericCommand genericCmd = 1;
+    GenericResponse genericResponse = 2;
+
+    CreateHook createHook = 3;
+    GetHooks getHooks = 4;
+    HookList hooks = 5;
+
+    GeofenceEvent geofenceEvent = 6;
   }
 }
