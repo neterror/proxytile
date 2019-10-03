@@ -59,7 +59,7 @@ class WebClient {
     Packet packet = Packet.fromBuffer(msg);
     var response = await _tile38Commands.process(packet);
     if (response is Packet) {
-      _channel.sink.add(response);
+      _channel.sink.add(response.writeToBuffer());
     }
   }
 }
