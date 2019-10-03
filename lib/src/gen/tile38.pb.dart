@@ -328,6 +328,38 @@ class CreateHook extends $pb.GeneratedMessage {
   void clearHook() => clearField(1);
 }
 
+class Status extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('Status')
+    ..aOB(1, 'success')
+    ..aOS(2, 'message')
+    ..hasRequiredFields = false
+  ;
+
+  Status._() : super();
+  factory Status() => create();
+  factory Status.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Status.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  Status clone() => Status()..mergeFromMessage(this);
+  Status copyWith(void Function(Status) updates) => super.copyWith((message) => updates(message as Status));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static Status create() => Status._();
+  Status createEmptyInstance() => create();
+  static $pb.PbList<Status> createRepeated() => $pb.PbList<Status>();
+  static Status getDefault() => _defaultInstance ??= create()..freeze();
+  static Status _defaultInstance;
+
+  $core.bool get success => $_get(0, false);
+  set success($core.bool v) { $_setBool(0, v); }
+  $core.bool hasSuccess() => $_has(0);
+  void clearSuccess() => clearField(1);
+
+  $core.String get message => $_getS(1, '');
+  set message($core.String v) { $_setString(1, v); }
+  $core.bool hasMessage() => $_has(1);
+  void clearMessage() => clearField(2);
+}
+
 class GetHooks extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetHooks')
     ..aOS(1, 'pattern')
@@ -383,6 +415,7 @@ enum Packet_Data {
   createHook, 
   getHooks, 
   hooks, 
+  status, 
   geofenceEvent, 
   notSet
 }
@@ -394,17 +427,19 @@ class Packet extends $pb.GeneratedMessage {
     3 : Packet_Data.createHook,
     4 : Packet_Data.getHooks,
     5 : Packet_Data.hooks,
-    6 : Packet_Data.geofenceEvent,
+    6 : Packet_Data.status,
+    7 : Packet_Data.geofenceEvent,
     0 : Packet_Data.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('Packet')
-    ..oo(0, [1, 2, 3, 4, 5, 6])
+    ..oo(0, [1, 2, 3, 4, 5, 6, 7])
     ..a<GenericCommand>(1, 'genericCmd', $pb.PbFieldType.OM, GenericCommand.getDefault, GenericCommand.create)
     ..a<GenericResponse>(2, 'genericResponse', $pb.PbFieldType.OM, GenericResponse.getDefault, GenericResponse.create)
     ..a<CreateHook>(3, 'createHook', $pb.PbFieldType.OM, CreateHook.getDefault, CreateHook.create)
     ..a<GetHooks>(4, 'getHooks', $pb.PbFieldType.OM, GetHooks.getDefault, GetHooks.create)
     ..a<HookList>(5, 'hooks', $pb.PbFieldType.OM, HookList.getDefault, HookList.create)
-    ..a<GeofenceEvent>(6, 'geofenceEvent', $pb.PbFieldType.OM, GeofenceEvent.getDefault, GeofenceEvent.create)
+    ..a<Status>(6, 'status', $pb.PbFieldType.OM, Status.getDefault, Status.create)
+    ..a<GeofenceEvent>(7, 'geofenceEvent', $pb.PbFieldType.OM, GeofenceEvent.getDefault, GeofenceEvent.create)
     ..hasRequiredFields = false
   ;
 
@@ -450,9 +485,14 @@ class Packet extends $pb.GeneratedMessage {
   $core.bool hasHooks() => $_has(4);
   void clearHooks() => clearField(5);
 
-  GeofenceEvent get geofenceEvent => $_getN(5);
-  set geofenceEvent(GeofenceEvent v) { setField(6, v); }
-  $core.bool hasGeofenceEvent() => $_has(5);
-  void clearGeofenceEvent() => clearField(6);
+  Status get status => $_getN(5);
+  set status(Status v) { setField(6, v); }
+  $core.bool hasStatus() => $_has(5);
+  void clearStatus() => clearField(6);
+
+  GeofenceEvent get geofenceEvent => $_getN(6);
+  set geofenceEvent(GeofenceEvent v) { setField(7, v); }
+  $core.bool hasGeofenceEvent() => $_has(6);
+  void clearGeofenceEvent() => clearField(7);
 }
 

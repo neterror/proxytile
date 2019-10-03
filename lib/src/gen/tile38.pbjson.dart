@@ -103,6 +103,14 @@ const CreateHook$json = const {
   ],
 };
 
+const Status$json = const {
+  '1': 'Status',
+  '2': const [
+    const {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+    const {'1': 'message', '3': 2, '4': 1, '5': 9, '10': 'message'},
+  ],
+};
+
 const GetHooks$json = const {
   '1': 'GetHooks',
   '2': const [
@@ -125,7 +133,8 @@ const Packet$json = const {
     const {'1': 'createHook', '3': 3, '4': 1, '5': 11, '6': '.CreateHook', '9': 0, '10': 'createHook'},
     const {'1': 'getHooks', '3': 4, '4': 1, '5': 11, '6': '.GetHooks', '9': 0, '10': 'getHooks'},
     const {'1': 'hooks', '3': 5, '4': 1, '5': 11, '6': '.HookList', '9': 0, '10': 'hooks'},
-    const {'1': 'geofenceEvent', '3': 6, '4': 1, '5': 11, '6': '.GeofenceEvent', '9': 0, '10': 'geofenceEvent'},
+    const {'1': 'status', '3': 6, '4': 1, '5': 11, '6': '.Status', '9': 0, '10': 'status'},
+    const {'1': 'geofenceEvent', '3': 7, '4': 1, '5': 11, '6': '.GeofenceEvent', '9': 0, '10': 'geofenceEvent'},
   ],
   '8': const [
     const {'1': 'data'},

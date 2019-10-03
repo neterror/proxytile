@@ -39,14 +39,22 @@ class Tile38Commands {
   _createHook(Packet packet) async {
     var hook = packet.createHook.hook;
     var topic = "${MqttService.rootTopic}${hook.group}";
-    var now =  DateTime.now().millisecondsSinceEpoch;
+    var now = DateTime.now().millisecondsSinceEpoch;
     var hookName = "${hook.group}_$now";
     var mqttHook =
         "SETHOOK $hookName mqtt://${_mqttService.server}:${_mqttService.port}/$topic/qos=1/retained=0";
     var fence = "${hook.command} ${hook.group} FENCE ${_areaStr(hook.area)}";
     var cmd = "$mqttHook $fence";
     var response = await _execute("$cmd");
-    print(response);
+
+    final report = Packet()..status = Status();
+    if (response is int) {
+      report.status.success = true;
+    } else if (response is String) {
+      report.status.success = false;
+      report.status.message = response;
+    }
+    return report;
   }
 
   Area _getArea(List tokens) {
@@ -81,7 +89,6 @@ class Tile38Commands {
   }
 
   _getHooks(Packet packet) async {
-    print("get hooks invoked!");
     var response = await _execute("HOOKS ${packet.getHooks.pattern}");
     if (response is List) {
       return _hooksIn(response);

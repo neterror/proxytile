@@ -58,6 +58,11 @@ message CreateHook {
   Hook hook = 1;
 }
 
+message Status {
+  bool success = 1;
+  string message = 2;
+}
+
 
 message GetHooks { string pattern = 1; }
 message HookList { repeated Hook items = 2; }
@@ -71,6 +76,7 @@ message Packet {
     GetHooks getHooks = 4;
     HookList hooks = 5;
 
-    GeofenceEvent geofenceEvent = 6;
+    Status status = 6;
+    GeofenceEvent geofenceEvent = 7;
   }
 }
