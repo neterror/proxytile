@@ -43,7 +43,7 @@ class Tile38Commands {
     final result = Area();
     String type = tokens[3];
     if (type.toLowerCase() == "object") {
-      result.json = GeoJson()..json = tokens[4];
+      result.json = GeoJson()..value = tokens[4];
     } else {
       result.point = Point()..center = LatLng();
       result.point.center.lat = double.parse(tokens[4]);

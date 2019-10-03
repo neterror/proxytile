@@ -143,7 +143,7 @@ class Point extends $pb.GeneratedMessage {
 
 class GeoJson extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('GeoJson')
-    ..aOS(1, 'json')
+    ..aOS(1, 'value')
     ..hasRequiredFields = false
   ;
 
@@ -161,10 +161,10 @@ class GeoJson extends $pb.GeneratedMessage {
   static GeoJson getDefault() => _defaultInstance ??= create()..freeze();
   static GeoJson _defaultInstance;
 
-  $core.String get json => $_getS(0, '');
-  set json($core.String v) { $_setString(0, v); }
-  $core.bool hasJson() => $_has(0);
-  void clearJson() => clearField(1);
+  $core.String get value => $_getS(0, '');
+  set value($core.String v) { $_setString(0, v); }
+  $core.bool hasValue() => $_has(0);
+  void clearValue() => clearField(1);
 }
 
 enum Area_Data {

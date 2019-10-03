@@ -61,7 +61,7 @@ const Point$json = const {
 const GeoJson$json = const {
   '1': 'GeoJson',
   '2': const [
-    const {'1': 'json', '3': 1, '4': 1, '5': 9, '10': 'json'},
+    const {'1': 'value', '3': 1, '4': 1, '5': 9, '10': 'value'},
   ],
 };
 

@@ -30,7 +30,7 @@ message Point {
   double radius = 2;
 }
 
-message GeoJson { string json = 1; }
+message GeoJson { string value = 1; }
 
 message Area {
   oneof data {
