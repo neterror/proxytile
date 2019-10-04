@@ -10,7 +10,5 @@ include: package:pedantic/analysis_options.yaml
 #     - camel_case_types
 
 analyzer:
-   exclude:
-     - lib/src/gen/tile38*
-     - lib/src/gen/*.dart
-     - src/gen/**
+  exclude:
+    - lib/src/gen/**

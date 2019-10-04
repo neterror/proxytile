@@ -35,10 +35,11 @@ message Area {
 
 message GeofenceEvent {
   Detection detect = 1;
-  string hookName = 2;
-  string group = 3;
-  string vehicle = 4;
-  LatLng position = 5;
+  string command = 2;
+  string hook = 3;
+  string group = 4;
+  string vehicle = 5;
+  LatLng position = 6;
 }
 
 message Hook {

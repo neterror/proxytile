@@ -173,10 +173,11 @@ class Area extends $pb.GeneratedMessage {
 class GeofenceEvent extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('GeofenceEvent')
     ..e<Detection>(1, 'detect', $pb.PbFieldType.OE, Detection.enter, Detection.valueOf, Detection.values)
-    ..aOS(2, 'hookName')
-    ..aOS(3, 'group')
-    ..aOS(4, 'vehicle')
-    ..a<LatLng>(5, 'position', $pb.PbFieldType.OM, LatLng.getDefault, LatLng.create)
+    ..aOS(2, 'command')
+    ..aOS(3, 'hook')
+    ..aOS(4, 'group')
+    ..aOS(5, 'vehicle')
+    ..a<LatLng>(6, 'position', $pb.PbFieldType.OM, LatLng.getDefault, LatLng.create)
     ..hasRequiredFields = false
   ;
 
@@ -199,25 +200,30 @@ class GeofenceEvent extends $pb.GeneratedMessage {
   $core.bool hasDetect() => $_has(0);
   void clearDetect() => clearField(1);
 
-  $core.String get hookName => $_getS(1, '');
-  set hookName($core.String v) { $_setString(1, v); }
-  $core.bool hasHookName() => $_has(1);
-  void clearHookName() => clearField(2);
+  $core.String get command => $_getS(1, '');
+  set command($core.String v) { $_setString(1, v); }
+  $core.bool hasCommand() => $_has(1);
+  void clearCommand() => clearField(2);
 
-  $core.String get group => $_getS(2, '');
-  set group($core.String v) { $_setString(2, v); }
-  $core.bool hasGroup() => $_has(2);
-  void clearGroup() => clearField(3);
+  $core.String get hook => $_getS(2, '');
+  set hook($core.String v) { $_setString(2, v); }
+  $core.bool hasHook() => $_has(2);
+  void clearHook() => clearField(3);
 
-  $core.String get vehicle => $_getS(3, '');
-  set vehicle($core.String v) { $_setString(3, v); }
-  $core.bool hasVehicle() => $_has(3);
-  void clearVehicle() => clearField(4);
+  $core.String get group => $_getS(3, '');
+  set group($core.String v) { $_setString(3, v); }
+  $core.bool hasGroup() => $_has(3);
+  void clearGroup() => clearField(4);
 
-  LatLng get position => $_getN(4);
-  set position(LatLng v) { setField(5, v); }
-  $core.bool hasPosition() => $_has(4);
-  void clearPosition() => clearField(5);
+  $core.String get vehicle => $_getS(4, '');
+  set vehicle($core.String v) { $_setString(4, v); }
+  $core.bool hasVehicle() => $_has(4);
+  void clearVehicle() => clearField(5);
+
+  LatLng get position => $_getN(5);
+  set position(LatLng v) { setField(6, v); }
+  $core.bool hasPosition() => $_has(5);
+  void clearPosition() => clearField(6);
 }
 
 class Hook extends $pb.GeneratedMessage {

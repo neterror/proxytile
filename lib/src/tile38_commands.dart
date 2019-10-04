@@ -24,9 +24,10 @@ class Tile38Commands {
     return result;
   }
 
-  dynamic _execute(String request) async {
+  Future<dynamic> _execute(String request) async {
     List<String> tokens = request.split(" ");
-    return await _tile38Service.send(tokens);
+    _tile38Service.send(tokens);
+    return await _tile38Service.received.first;
   }
 
   String _areaStr(Area area) {
@@ -90,7 +91,6 @@ class Tile38Commands {
   }
 
   _getHooks(Packet packet) async {
-    print("about to get hooks from pattern: ${packet.getHooks.pattern}");
     var response = await _execute("HOOKS ${packet.getHooks.pattern}");
     if (response is List) {
       return _hooksIn(response);
@@ -98,7 +98,6 @@ class Tile38Commands {
   }
 
   _delHook(Packet packet) async {
-    print("about to delete hook ${packet.delHook.pattern}");
     var response = await _execute("DELHOOK ${packet.delHook.pattern}");
 
     final report = Packet()..status = Status();
@@ -110,7 +109,7 @@ class Tile38Commands {
   }
 
   _genericCmd(Packet request) async {
-    var response = await _execute(request.genericCmd.command);
+    dynamic response = await _execute(request.genericCmd.command);
     var packet = Packet();
     packet.genericResponse = GenericResponse();
     if (response is String) {

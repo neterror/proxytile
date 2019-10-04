@@ -70,10 +70,11 @@ const GeofenceEvent$json = const {
   '1': 'GeofenceEvent',
   '2': const [
     const {'1': 'detect', '3': 1, '4': 1, '5': 14, '6': '.Detection', '10': 'detect'},
-    const {'1': 'hookName', '3': 2, '4': 1, '5': 9, '10': 'hookName'},
-    const {'1': 'group', '3': 3, '4': 1, '5': 9, '10': 'group'},
-    const {'1': 'vehicle', '3': 4, '4': 1, '5': 9, '10': 'vehicle'},
-    const {'1': 'position', '3': 5, '4': 1, '5': 11, '6': '.LatLng', '10': 'position'},
+    const {'1': 'command', '3': 2, '4': 1, '5': 9, '10': 'command'},
+    const {'1': 'hook', '3': 3, '4': 1, '5': 9, '10': 'hook'},
+    const {'1': 'group', '3': 4, '4': 1, '5': 9, '10': 'group'},
+    const {'1': 'vehicle', '3': 5, '4': 1, '5': 9, '10': 'vehicle'},
+    const {'1': 'position', '3': 6, '4': 1, '5': 11, '6': '.LatLng', '10': 'position'},
   ],
 };
 
