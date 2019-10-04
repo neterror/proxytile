@@ -22,7 +22,7 @@ class MqttService implements Service {
     _client.onConnected = () {
       print("Connected to MQTT broker");
       _client.updates.listen(_mqttReceived);
-      _client.subscribe("$rootTopic/#", MqttQos.atLeastOnce);
+      _client.subscribe("$rootTopic/#", MqttQos.atMostOnce);
     };
 
     _client.onDisconnected = () => print("Disconnected from the MQTT broker");

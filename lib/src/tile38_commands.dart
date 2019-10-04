@@ -40,13 +40,14 @@ class Tile38Commands {
 
   _createHook(Packet packet) async {
     var hook = packet.createHook.hook;
-    var topic = "${MqttService.rootTopic}${hook.group}";
+    var topic = "${MqttService.rootTopic}/${hook.group}";
     var now = DateTime.now().millisecondsSinceEpoch;
     var hookName = "${hook.group}_$now";
     var mqttHook =
-        "SETHOOK $hookName mqtt://${_mqttService.server}:${_mqttService.port}/$topic/qos=1/retained=0";
+        "SETHOOK $hookName mqtt://${_mqttService.server}:${_mqttService.port}/$topic/qos=0/retained=0";
     var fence = "${hook.command} ${hook.group} FENCE ${_areaStr(hook.area)}";
     var cmd = "$mqttHook $fence";
+    print("cmd: $cmd");
     var response = await _execute("$cmd");
 
     final report = Packet()..status = Status();
@@ -61,14 +62,17 @@ class Tile38Commands {
 
   Area _getArea(List tokens) {
     final result = Area();
-    String type = tokens[3];
+    final areaTokens = {"object", "point", "bounds"};
+    int areaStart = tokens.indexWhere((x) => areaTokens.contains(x.toLowerCase())); //there is optional detection clause before that
+    
+    String type = tokens[areaStart];
     if (type.toLowerCase() == "object") {
-      result.json = GeoJson()..value = tokens[4];
+      result.json = GeoJson()..value = tokens[areaStart + 1];
     } else {
       result.point = Point()..center = LatLng();
-      result.point.center.lat = double.parse(tokens[4]);
-      result.point.center.lng = double.parse(tokens[5]);
-      result.point.radius = double.parse(tokens[6]);
+      result.point.center.lat = double.parse(tokens[areaStart + 1]);
+      result.point.center.lng = double.parse(tokens[areaStart + 2]);
+      result.point.radius = double.parse(tokens[areaStart + 3]);
     }
     return result;
   }
