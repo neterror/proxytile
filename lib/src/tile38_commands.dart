@@ -12,6 +12,7 @@ class Tile38Commands {
     _commands[Packet_Data.createHook] = _createHook;
     _commands[Packet_Data.genericCmd] = _genericCmd;
     _commands[Packet_Data.getHooks] = _getHooks;
+    _commands[Packet_Data.delHook] = _delHook;
   }
 
   Future<Packet> process(Packet command) async {
@@ -72,7 +73,7 @@ class Tile38Commands {
   }
 
   Packet _hooksIn(List response) {
-    final packet = Packet()..hooks = HookList();
+    final packet = Packet()..hookList = HookList();
     for (var item in response) {
       var hook = Hook();
       //[0] name, [1] group,[2] command, [3] fenceObject
@@ -83,16 +84,29 @@ class Tile38Commands {
           .firstWhere((Command c) => c.name.startsWith(item[3][0]));
       hook.area = _getArea(item[3]);
 
-      packet.hooks.items.add(hook);
+      packet.hookList.items.add(hook);
     }
     return packet;
   }
 
   _getHooks(Packet packet) async {
+    print("about to get hooks from pattern: ${packet.getHooks.pattern}");
     var response = await _execute("HOOKS ${packet.getHooks.pattern}");
     if (response is List) {
       return _hooksIn(response);
     }
+  }
+
+  _delHook(Packet packet) async {
+    print("about to delete hook ${packet.delHook.pattern}");
+    var response = await _execute("DELHOOK ${packet.delHook.pattern}");
+
+    final report = Packet()..status = Status();
+    report.status.success = (response != 0);
+    if (!report.status.success) {
+      report.status.message = "Failed to remove ${packet.delHook.pattern}";
+    }
+    return report;
   }
 
   _genericCmd(Packet request) async {

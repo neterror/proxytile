@@ -66,7 +66,9 @@ message Status {
 
 message GetHooks { string pattern = 1; }
 message HookList { repeated Hook items = 2; }
-
+message DelHook {
+  string pattern = 1;
+}
 message Packet {
   oneof data {
     GenericCommand genericCmd = 1;
@@ -74,9 +76,10 @@ message Packet {
 
     CreateHook createHook = 3;
     GetHooks getHooks = 4;
-    HookList hooks = 5;
+    HookList hookList = 5;
+    DelHook delHook = 6;
 
-    Status status = 6;
-    GeofenceEvent geofenceEvent = 7;
+    Status status = 7;
+    GeofenceEvent geofenceEvent = 8;
   }
 }

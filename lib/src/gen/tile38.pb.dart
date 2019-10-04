@@ -409,12 +409,39 @@ class HookList extends $pb.GeneratedMessage {
   $core.List<Hook> get items => $_getList(0);
 }
 
+class DelHook extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('DelHook')
+    ..aOS(1, 'pattern')
+    ..hasRequiredFields = false
+  ;
+
+  DelHook._() : super();
+  factory DelHook() => create();
+  factory DelHook.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory DelHook.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  DelHook clone() => DelHook()..mergeFromMessage(this);
+  DelHook copyWith(void Function(DelHook) updates) => super.copyWith((message) => updates(message as DelHook));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static DelHook create() => DelHook._();
+  DelHook createEmptyInstance() => create();
+  static $pb.PbList<DelHook> createRepeated() => $pb.PbList<DelHook>();
+  static DelHook getDefault() => _defaultInstance ??= create()..freeze();
+  static DelHook _defaultInstance;
+
+  $core.String get pattern => $_getS(0, '');
+  set pattern($core.String v) { $_setString(0, v); }
+  $core.bool hasPattern() => $_has(0);
+  void clearPattern() => clearField(1);
+}
+
 enum Packet_Data {
   genericCmd, 
   genericResponse, 
   createHook, 
   getHooks, 
-  hooks, 
+  hookList, 
+  delHook, 
   status, 
   geofenceEvent, 
   notSet
@@ -426,20 +453,22 @@ class Packet extends $pb.GeneratedMessage {
     2 : Packet_Data.genericResponse,
     3 : Packet_Data.createHook,
     4 : Packet_Data.getHooks,
-    5 : Packet_Data.hooks,
-    6 : Packet_Data.status,
-    7 : Packet_Data.geofenceEvent,
+    5 : Packet_Data.hookList,
+    6 : Packet_Data.delHook,
+    7 : Packet_Data.status,
+    8 : Packet_Data.geofenceEvent,
     0 : Packet_Data.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('Packet')
-    ..oo(0, [1, 2, 3, 4, 5, 6, 7])
+    ..oo(0, [1, 2, 3, 4, 5, 6, 7, 8])
     ..a<GenericCommand>(1, 'genericCmd', $pb.PbFieldType.OM, GenericCommand.getDefault, GenericCommand.create)
     ..a<GenericResponse>(2, 'genericResponse', $pb.PbFieldType.OM, GenericResponse.getDefault, GenericResponse.create)
     ..a<CreateHook>(3, 'createHook', $pb.PbFieldType.OM, CreateHook.getDefault, CreateHook.create)
     ..a<GetHooks>(4, 'getHooks', $pb.PbFieldType.OM, GetHooks.getDefault, GetHooks.create)
-    ..a<HookList>(5, 'hooks', $pb.PbFieldType.OM, HookList.getDefault, HookList.create)
-    ..a<Status>(6, 'status', $pb.PbFieldType.OM, Status.getDefault, Status.create)
-    ..a<GeofenceEvent>(7, 'geofenceEvent', $pb.PbFieldType.OM, GeofenceEvent.getDefault, GeofenceEvent.create)
+    ..a<HookList>(5, 'hookList', $pb.PbFieldType.OM, HookList.getDefault, HookList.create)
+    ..a<DelHook>(6, 'delHook', $pb.PbFieldType.OM, DelHook.getDefault, DelHook.create)
+    ..a<Status>(7, 'status', $pb.PbFieldType.OM, Status.getDefault, Status.create)
+    ..a<GeofenceEvent>(8, 'geofenceEvent', $pb.PbFieldType.OM, GeofenceEvent.getDefault, GeofenceEvent.create)
     ..hasRequiredFields = false
   ;
 
@@ -480,19 +509,24 @@ class Packet extends $pb.GeneratedMessage {
   $core.bool hasGetHooks() => $_has(3);
   void clearGetHooks() => clearField(4);
 
-  HookList get hooks => $_getN(4);
-  set hooks(HookList v) { setField(5, v); }
-  $core.bool hasHooks() => $_has(4);
-  void clearHooks() => clearField(5);
+  HookList get hookList => $_getN(4);
+  set hookList(HookList v) { setField(5, v); }
+  $core.bool hasHookList() => $_has(4);
+  void clearHookList() => clearField(5);
 
-  Status get status => $_getN(5);
-  set status(Status v) { setField(6, v); }
-  $core.bool hasStatus() => $_has(5);
-  void clearStatus() => clearField(6);
+  DelHook get delHook => $_getN(5);
+  set delHook(DelHook v) { setField(6, v); }
+  $core.bool hasDelHook() => $_has(5);
+  void clearDelHook() => clearField(6);
 
-  GeofenceEvent get geofenceEvent => $_getN(6);
-  set geofenceEvent(GeofenceEvent v) { setField(7, v); }
-  $core.bool hasGeofenceEvent() => $_has(6);
-  void clearGeofenceEvent() => clearField(7);
+  Status get status => $_getN(6);
+  set status(Status v) { setField(7, v); }
+  $core.bool hasStatus() => $_has(6);
+  void clearStatus() => clearField(7);
+
+  GeofenceEvent get geofenceEvent => $_getN(7);
+  set geofenceEvent(GeofenceEvent v) { setField(8, v); }
+  $core.bool hasGeofenceEvent() => $_has(7);
+  void clearGeofenceEvent() => clearField(8);
 }
 

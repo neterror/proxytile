@@ -125,6 +125,13 @@ const HookList$json = const {
   ],
 };
 
+const DelHook$json = const {
+  '1': 'DelHook',
+  '2': const [
+    const {'1': 'pattern', '3': 1, '4': 1, '5': 9, '10': 'pattern'},
+  ],
+};
+
 const Packet$json = const {
   '1': 'Packet',
   '2': const [
@@ -132,9 +139,10 @@ const Packet$json = const {
     const {'1': 'genericResponse', '3': 2, '4': 1, '5': 11, '6': '.GenericResponse', '9': 0, '10': 'genericResponse'},
     const {'1': 'createHook', '3': 3, '4': 1, '5': 11, '6': '.CreateHook', '9': 0, '10': 'createHook'},
     const {'1': 'getHooks', '3': 4, '4': 1, '5': 11, '6': '.GetHooks', '9': 0, '10': 'getHooks'},
-    const {'1': 'hooks', '3': 5, '4': 1, '5': 11, '6': '.HookList', '9': 0, '10': 'hooks'},
-    const {'1': 'status', '3': 6, '4': 1, '5': 11, '6': '.Status', '9': 0, '10': 'status'},
-    const {'1': 'geofenceEvent', '3': 7, '4': 1, '5': 11, '6': '.GeofenceEvent', '9': 0, '10': 'geofenceEvent'},
+    const {'1': 'hookList', '3': 5, '4': 1, '5': 11, '6': '.HookList', '9': 0, '10': 'hookList'},
+    const {'1': 'delHook', '3': 6, '4': 1, '5': 11, '6': '.DelHook', '9': 0, '10': 'delHook'},
+    const {'1': 'status', '3': 7, '4': 1, '5': 11, '6': '.Status', '9': 0, '10': 'status'},
+    const {'1': 'geofenceEvent', '3': 8, '4': 1, '5': 11, '6': '.GeofenceEvent', '9': 0, '10': 'geofenceEvent'},
   ],
   '8': const [
     const {'1': 'data'},
