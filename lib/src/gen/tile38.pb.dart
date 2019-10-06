@@ -172,7 +172,7 @@ class Area extends $pb.GeneratedMessage {
 
 class GeofenceEvent extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('GeofenceEvent')
-    ..e<Detection>(1, 'detect', $pb.PbFieldType.OE, Detection.enter, Detection.valueOf, Detection.values)
+    ..e<Detection>(1, 'detect', $pb.PbFieldType.OE, Detection.all, Detection.valueOf, Detection.values)
     ..aOS(2, 'command')
     ..aOS(3, 'hook')
     ..aOS(4, 'group')
@@ -231,7 +231,7 @@ class Hook extends $pb.GeneratedMessage {
     ..aOS(1, 'name')
     ..aOS(2, 'group')
     ..e<Command>(3, 'command', $pb.PbFieldType.OE, Command.nearby, Command.valueOf, Command.values)
-    ..e<Detection>(4, 'detection', $pb.PbFieldType.OE, Detection.enter, Detection.valueOf, Detection.values)
+    ..e<Detection>(4, 'detection', $pb.PbFieldType.OE, Detection.all, Detection.valueOf, Detection.values)
     ..a<Area>(5, 'area', $pb.PbFieldType.OM, Area.getDefault, Area.create)
     ..hasRequiredFields = false
   ;

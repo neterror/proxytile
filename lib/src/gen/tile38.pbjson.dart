@@ -8,12 +8,12 @@
 const Detection$json = const {
   '1': 'Detection',
   '2': const [
-    const {'1': 'enter', '2': 0},
-    const {'1': 'leave', '2': 1},
-    const {'1': 'inside', '2': 2},
-    const {'1': 'outside', '2': 4},
-    const {'1': 'cross', '2': 8},
-    const {'1': 'all', '2': 31},
+    const {'1': 'all', '2': 0},
+    const {'1': 'enter', '2': 1},
+    const {'1': 'leave', '2': 2},
+    const {'1': 'inside', '2': 4},
+    const {'1': 'outside', '2': 8},
+    const {'1': 'cross', '2': 16},
   ],
 };
 

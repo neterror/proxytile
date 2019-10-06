@@ -1,12 +1,12 @@
 syntax = "proto3";
 
 enum Detection {
-  enter = 0;
-  leave = 1;
-  inside = 2;
-  outside = 4;
-  cross = 8;
-  all = 31;
+  all = 0;  //if not specified, the detection command assumes all
+  enter = 1;
+  leave = 2;
+  inside = 4;
+  outside = 8;
+  cross = 16;
 }
 
 enum Command {

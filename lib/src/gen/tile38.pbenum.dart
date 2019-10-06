@@ -10,20 +10,20 @@ import 'dart:core' as $core show int, dynamic, String, List, Map;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class Detection extends $pb.ProtobufEnum {
-  static const Detection enter = Detection._(0, 'enter');
-  static const Detection leave = Detection._(1, 'leave');
-  static const Detection inside = Detection._(2, 'inside');
-  static const Detection outside = Detection._(4, 'outside');
-  static const Detection cross = Detection._(8, 'cross');
-  static const Detection all = Detection._(31, 'all');
+  static const Detection all = Detection._(0, 'all');
+  static const Detection enter = Detection._(1, 'enter');
+  static const Detection leave = Detection._(2, 'leave');
+  static const Detection inside = Detection._(4, 'inside');
+  static const Detection outside = Detection._(8, 'outside');
+  static const Detection cross = Detection._(16, 'cross');
 
   static const $core.List<Detection> values = <Detection> [
+    all,
     enter,
     leave,
     inside,
     outside,
     cross,
-    all,
   ];
 
   static final $core.Map<$core.int, Detection> _byValue = $pb.ProtobufEnum.initByValue(values);

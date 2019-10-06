@@ -26,6 +26,7 @@ class Tile38Commands {
   }
 
   Future<dynamic> _execute(String request) async {
+    print(request);
     List<String> tokens = request.split(" ");
     _tile38Service.send(tokens);
     return await _tile38Service.received.first;

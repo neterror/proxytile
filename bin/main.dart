@@ -15,7 +15,7 @@ void _main(List<String> args) async {
   parser.addOption('tile-host', help: "Tile38 host", defaultsTo: 'localhost');
   parser.addOption('tile-port', help: "Tile38 port", defaultsTo: '9851');
   parser.addOption('mqtt-host', help: "MQTT host", defaultsTo: 'localhost');
-  parser.addOption('mqtt-port', help: "MQTT port", defaultsTo: '8131');
+  parser.addOption('mqtt-port', help: "MQTT port", defaultsTo: '1883');
 
   var options;
   try {
@@ -35,7 +35,7 @@ void _main(List<String> args) async {
   bool connected = await tile38Service.connect();
   if (!connected) {
     exit(0);
-  } 
+  }
 
   print("starting web socket on port ${options['listen']}");
   var handler = webSocketHandler(
