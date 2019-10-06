@@ -1,12 +1,11 @@
 syntax = "proto3";
 
 enum Detection {
-  all = 0;  //if not specified, the detection command assumes all
-  enter = 1;
-  leave = 2;
-  inside = 4;
-  outside = 8;
-  cross = 16;
+  enter = 0;
+  leave = 1;
+  inside = 2;
+  outside = 3;
+  cross = 4;
 }
 
 enum Command {
@@ -46,7 +45,7 @@ message Hook {
   string name = 1;
   string group = 2;
   Command command = 3;
-  Detection detection = 4;
+  repeated Detection detection = 4;
   Area area = 5;
 }
 

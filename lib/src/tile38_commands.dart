@@ -53,9 +53,15 @@ class Tile38Commands {
     var topic = "${MqttService.rootTopic}/${hook.group}";
     var now = DateTime.now().millisecondsSinceEpoch;
     var hookName = "${hook.group}_$now";
+    var detect = "";
+    if (hook.detection.isNotEmpty) {
+      detect = "DETECT " + hook.detection.map((x) => x.name).join(",");
+    }
+
     var mqttHook =
         "SETHOOK $hookName mqtt://${_mqttService.server}:${_mqttService.port}/$topic/qos=0/retained=0";
-    var fence = "${hook.command} ${hook.group} FENCE ${_areaStr(hook.area)}";
+    var fence =
+        "${hook.command} ${hook.group} FENCE ${detect} ${_areaStr(hook.area)}";
     var cmd = "$mqttHook $fence";
     print("cmd: $cmd");
     var response = await _execute("$cmd");
