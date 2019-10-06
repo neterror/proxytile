@@ -104,6 +104,15 @@ const CreateHook$json = const {
   ],
 };
 
+const SetObj$json = const {
+  '1': 'SetObj',
+  '2': const [
+    const {'1': 'group', '3': 1, '4': 1, '5': 9, '10': 'group'},
+    const {'1': 'object', '3': 2, '4': 1, '5': 9, '10': 'object'},
+    const {'1': 'area', '3': 3, '4': 1, '5': 11, '6': '.Area', '10': 'area'},
+  ],
+};
+
 const Status$json = const {
   '1': 'Status',
   '2': const [
@@ -144,6 +153,7 @@ const Packet$json = const {
     const {'1': 'delHook', '3': 6, '4': 1, '5': 11, '6': '.DelHook', '9': 0, '10': 'delHook'},
     const {'1': 'status', '3': 7, '4': 1, '5': 11, '6': '.Status', '9': 0, '10': 'status'},
     const {'1': 'geofenceEvent', '3': 8, '4': 1, '5': 11, '6': '.GeofenceEvent', '9': 0, '10': 'geofenceEvent'},
+    const {'1': 'setObj', '3': 9, '4': 1, '5': 11, '6': '.SetObj', '9': 0, '10': 'setObj'},
   ],
   '8': const [
     const {'1': 'data'},

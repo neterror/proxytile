@@ -59,6 +59,12 @@ message CreateHook {
   Hook hook = 1;
 }
 
+message SetObj {
+  string group = 1;
+  string object = 2;
+  Area area = 3;
+}
+
 message Status {
   bool success = 1;
   string message = 2;
@@ -82,5 +88,7 @@ message Packet {
 
     Status status = 7;
     GeofenceEvent geofenceEvent = 8;
+
+    SetObj setObj = 9;
   }
 }

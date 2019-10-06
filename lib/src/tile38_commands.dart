@@ -13,6 +13,7 @@ class Tile38Commands {
     _commands[Packet_Data.genericCmd] = _genericCmd;
     _commands[Packet_Data.getHooks] = _getHooks;
     _commands[Packet_Data.delHook] = _delHook;
+    _commands[Packet_Data.setObj] = _setObj;
   }
 
   Future<Packet> process(Packet command) async {
@@ -31,11 +32,19 @@ class Tile38Commands {
   }
 
   String _areaStr(Area area) {
-    if (area.whichData() == Area_Data.point) {
-      return "POINT ${area.point.center.lat} ${area.point.center.lng} ${area.point.radius}";
-    } else {
-      return "OBJECT ${area.json.value}";
+    String result = "";
+    switch (area.whichData()) {
+      case Area_Data.json:
+        result = "OBJECT ${area.json.value}";
+        break;
+      case Area_Data.point:
+        result = "POINT ${area.point.center.lat} ${area.point.center.lng}";
+        if (area.point.radius != 0) result += " ${area.point.radius}";
+        break;
+      case Area_Data.notSet:
+        break;
     }
+    return result;
   }
 
   _createHook(Packet packet) async {
@@ -63,8 +72,9 @@ class Tile38Commands {
   Area _getArea(List tokens) {
     final result = Area();
     final areaTokens = {"object", "point", "bounds"};
-    int areaStart = tokens.indexWhere((x) => areaTokens.contains(x.toLowerCase())); //there is optional detection clause before that
-    
+    int areaStart = tokens.indexWhere((x) => areaTokens.contains(
+        x.toLowerCase())); //there is optional detection clause before that
+
     String type = tokens[areaStart];
     if (type.toLowerCase() == "object") {
       result.json = GeoJson()..value = tokens[areaStart + 1];
@@ -110,6 +120,11 @@ class Tile38Commands {
       report.status.message = "Failed to remove ${packet.delHook.pattern}";
     }
     return report;
+  }
+
+  _setObj(Packet packet) async {
+    final obj = packet.setObj;
+    await _execute("SET ${obj.group} ${obj.object} ${_areaStr(obj.area)}");
   }
 
   _genericCmd(Packet request) async {
