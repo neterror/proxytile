@@ -11,14 +11,14 @@ import 'package:protobuf/protobuf.dart' as $pb;
 
 class Detection extends $pb.ProtobufEnum {
   static const Detection enter = Detection._(0, 'enter');
-  static const Detection leave = Detection._(1, 'leave');
+  static const Detection exit = Detection._(1, 'exit');
   static const Detection inside = Detection._(2, 'inside');
   static const Detection outside = Detection._(3, 'outside');
   static const Detection cross = Detection._(4, 'cross');
 
   static const $core.List<Detection> values = <Detection> [
     enter,
-    leave,
+    exit,
     inside,
     outside,
     cross,

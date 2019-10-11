@@ -2,7 +2,7 @@ syntax = "proto3";
 
 enum Detection {
   enter = 0;
-  leave = 1;
+  exit = 1;
   inside = 2;
   outside = 3;
   cross = 4;

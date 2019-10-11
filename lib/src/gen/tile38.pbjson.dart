@@ -9,7 +9,7 @@ const Detection$json = const {
   '1': 'Detection',
   '2': const [
     const {'1': 'enter', '2': 0},
-    const {'1': 'leave', '2': 1},
+    const {'1': 'exit', '2': 1},
     const {'1': 'inside', '2': 2},
     const {'1': 'outside', '2': 3},
     const {'1': 'cross', '2': 4},
