@@ -63,7 +63,6 @@ class Tile38Commands {
     var fence =
         "${hook.command} ${hook.group} FENCE ${detect} ${_areaStr(hook.area)}";
     var cmd = "$mqttHook $fence";
-    print("cmd: $cmd");
     var response = await _execute("$cmd");
 
     final report = Packet()..status = Status();
@@ -71,7 +70,7 @@ class Tile38Commands {
       report.status.success = true;
     } else if (response is String) {
       report.status.success = false;
-      report.status.message = response;
+      report.status.message = "$response, $cmd";
     }
     return report;
   }
@@ -94,6 +93,21 @@ class Tile38Commands {
     return result;
   }
 
+  final _detections = <String, Detection>{
+    "enter": Detection.enter,
+    "exit": Detection.exit,
+    "inside": Detection.inside,
+    "outside": Detection.outside,
+    "cross": Detection.cross,
+  };
+
+  List<Detection> _detectionList(List tokens) {
+    int index = tokens.indexOf("DETECT");
+    if (index == -1) return <Detection>[];
+    List<String> options = tokens[index + 1].split(",");
+    return options.map((x) => _detections[x]).toList();
+  }
+
   Packet _hooksIn(List response) {
     final packet = Packet()..hookList = HookList();
     for (var item in response) {
@@ -102,10 +116,12 @@ class Tile38Commands {
       hook.name = item[0];
       hook.group = item[1];
 
+      List cmdTokens = item[3];
       hook.command = Command.values
-          .firstWhere((Command c) => c.name.startsWith(item[3][0]));
-      hook.area = _getArea(item[3]);
+          .firstWhere((Command c) => c.name.startsWith(cmdTokens[0]));
 
+      hook.detection.addAll(_detectionList(cmdTokens));
+      hook.area = _getArea(item[3]);
       packet.hookList.items.add(hook);
     }
     return packet;
