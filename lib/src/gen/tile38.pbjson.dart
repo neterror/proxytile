@@ -103,12 +103,21 @@ const CreateHook$json = const {
   ],
 };
 
+const Field$json = const {
+  '1': 'Field',
+  '2': const [
+    const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
+    const {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
+  ],
+};
+
 const SetObj$json = const {
   '1': 'SetObj',
   '2': const [
     const {'1': 'group', '3': 1, '4': 1, '5': 9, '10': 'group'},
     const {'1': 'object', '3': 2, '4': 1, '5': 9, '10': 'object'},
     const {'1': 'area', '3': 3, '4': 1, '5': 11, '6': '.Area', '10': 'area'},
+    const {'1': 'fields', '3': 4, '4': 3, '5': 11, '6': '.Field', '10': 'fields'},
   ],
 };
 

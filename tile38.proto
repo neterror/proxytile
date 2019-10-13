@@ -58,10 +58,16 @@ message CreateHook {
   Hook hook = 1;
 }
 
+message Field {
+  string key = 1;
+  string value = 2;
+}
+
 message SetObj {
   string group = 1;
   string object = 2;
   Area area = 3;
+  repeated Field fields = 4;
 }
 
 message Status {

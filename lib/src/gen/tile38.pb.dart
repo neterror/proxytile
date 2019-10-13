@@ -331,11 +331,44 @@ class CreateHook extends $pb.GeneratedMessage {
   void clearHook() => clearField(1);
 }
 
+class Field extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('Field')
+    ..aOS(1, 'key')
+    ..aOS(2, 'value')
+    ..hasRequiredFields = false
+  ;
+
+  Field._() : super();
+  factory Field() => create();
+  factory Field.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Field.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  Field clone() => Field()..mergeFromMessage(this);
+  Field copyWith(void Function(Field) updates) => super.copyWith((message) => updates(message as Field));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static Field create() => Field._();
+  Field createEmptyInstance() => create();
+  static $pb.PbList<Field> createRepeated() => $pb.PbList<Field>();
+  static Field getDefault() => _defaultInstance ??= create()..freeze();
+  static Field _defaultInstance;
+
+  $core.String get key => $_getS(0, '');
+  set key($core.String v) { $_setString(0, v); }
+  $core.bool hasKey() => $_has(0);
+  void clearKey() => clearField(1);
+
+  $core.String get value => $_getS(1, '');
+  set value($core.String v) { $_setString(1, v); }
+  $core.bool hasValue() => $_has(1);
+  void clearValue() => clearField(2);
+}
+
 class SetObj extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('SetObj')
     ..aOS(1, 'group')
     ..aOS(2, 'object')
     ..a<Area>(3, 'area', $pb.PbFieldType.OM, Area.getDefault, Area.create)
+    ..pc<Field>(4, 'fields', $pb.PbFieldType.PM,Field.create)
     ..hasRequiredFields = false
   ;
 
@@ -367,6 +400,8 @@ class SetObj extends $pb.GeneratedMessage {
   set area(Area v) { setField(3, v); }
   $core.bool hasArea() => $_has(2);
   void clearArea() => clearField(3);
+
+  $core.List<Field> get fields => $_getList(3);
 }
 
 class Status extends $pb.GeneratedMessage {
