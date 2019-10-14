@@ -151,7 +151,7 @@ class Tile38Commands {
     final obj = packet.setObj;
 
     var fields =
-        obj.fields.map((f) => "${f.key} ${f.value}").toList().join(" ");
+        obj.fields.map((f) => "FIELD ${f.key} ${f.value}").toList().join(" ");
     String setString =
         "SET ${obj.group} ${obj.object} ${fields} ${_areaStr(obj.area)}";
     // "SET ${obj.group} ${obj.object} ${_areaStr(obj.area)}"
