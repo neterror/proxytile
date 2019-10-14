@@ -1,7 +1,9 @@
 import 'tile38_service.dart';
 import 'gen/tile38.pb.dart';
 import 'mqtt_service.dart';
-
+import 'package:typed_data/typed_buffers.dart';
+import 'package:byte_array/byte_array.dart';
+import 'dart:typed_data';
 class Tile38Commands {
   final Tile38Service _tile38Service;
   final MqttService _mqttService;
@@ -147,7 +149,32 @@ class Tile38Commands {
 
   _setObj(Packet packet) async {
     final obj = packet.setObj;
-    await _execute("SET ${obj.group} ${obj.object} ${_areaStr(obj.area)}");
+
+    var fields =
+        obj.fields.map((f) => "${f.key} ${f.value}").toList().join(" ");
+    String setString =
+        "SET ${obj.group} ${obj.object} ${fields} ${_areaStr(obj.area)}";
+    // "SET ${obj.group} ${obj.object} ${_areaStr(obj.area)}"
+    await _execute(setString);
+
+    String imei = obj.fields.map((f) => "${f.value}").toList().join(" ");
+    String topic = "carnet/position/${imei}";
+    Uint8Buffer buf = Uint8Buffer();
+    final bytes = ByteArray(8, Endian.big);
+    if (obj.area.whichData() != Area_Data.point) {
+      print("unsupported object type. Only points are accepted");
+      return;
+    }
+    final lat = obj.area.point.center.lat;
+    final lng = obj.area.point.center.lng;
+
+    bytes.writeFloat(lat);
+    bytes.writeFloat(lng);
+    bytes.offset = 0;
+    buf.addAll([0x03, 0x12, 0x45]); //Time
+    buf.addAll(bytes.byteStream().toList()); // lat and lng
+    buf.addAll([0x23, 0x25, 0x08]); // altitude and num of sat
+    _mqttService.send(buf, topic);
   }
 
   _genericCmd(Packet request) async {

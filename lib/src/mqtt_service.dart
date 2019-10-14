@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'dart:typed_data';
 import 'service.dart';
+import 'package:typed_data/typed_buffers.dart';
 
 class MqttService implements Service {
   static const rootTopic = "geofence";
@@ -49,6 +50,9 @@ class MqttService implements Service {
     _client.subscribe(topic, MqttQos.atMostOnce);
   }
 
+  void publish(String topic, Uint8Buffer data) =>
+      _client.publishMessage(topic, MqttQos.atMostOnce, data);
+
   @override
-  void send(dynamic message) => print("mqtt publishing not implemented");
+  void send(dynamic message, [dynamic param]) => publish(param, message);
 }

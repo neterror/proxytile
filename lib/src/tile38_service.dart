@@ -27,7 +27,7 @@ class Tile38Service implements Service {
   }
 
   @override
-  void send(dynamic data) {
+  void send(dynamic data, [dynamic param]) {
     if (data is! List<String>) {
       print("Tile38 service expects list of strings for sending");
     } else {
